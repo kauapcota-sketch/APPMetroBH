@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="appMetroBH.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1043"/><column_width id="4" width="0"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="TabelaBilhete" custom_title="0" dock_id="1" table="4,13:mainTabelaBilhete"/><table title="TabelaBilhete" custom_title="0" dock_id="2" table="4,13:mainTabelaBilhete"/><dock_state state="000000ff00000000fd0000000100000002000005ab00000390fc0100000001fc00000000000005ab0000012400fffffffa000000010100000002fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000012400fffffffb000000160064006f0063006b00420072006f00770073006500320100000000ffffffff0000012400ffffff0000026f0000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="TabelaBilhete" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="57"/><column index="2" value="79"/><column index="3" value="39"/><column index="4" value="87"/><column index="5" value="37"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE TabelaBilhete (
+    idBilhete INTEGER PRIMARY KEY AUTOINCREMENT,
+    tipo TEXT,
+    saldo REAL,
+    dataEmissao TEXT,
+    ativo INTEGER
+);
+
+INSERT INTO TabelaBilhete (tipo, saldo, dataEmissao, ativo) VALUES
+('Comum',       10.00, '2024-01-15', 1),
+('Estudante',    5.50, '2024-02-20', 1),
+('Idoso',        0.00, '2024-03-10', 1),
+('VT',          50.00, '2024-04-05', 1),
+('Pré-pago',    25.00, '2024-05-01', 1),
+('Comum',        8.75, '2024-06-18', 0),
+('Estudante',   12.00, '2024-07-22', 1);
+</sql><sql name="SQL 2">CREATE TABLE TabelaEstacao (
+    idEstacao INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT,
+    linha TEXT,
+    endereco TEXT,
+    bairro TEXT,
+    cidade TEXT
+);
+
+INSERT INTO TabelaEstacao (nome, linha, endereco, bairro, cidade) VALUES
+('Estação Central',      'Linha 1 - Azul',    'Av. Afonso Pena, 1000',    'Centro',       'Belo Horizonte'),
+('Estação Savassi',      'Linha 1 - Azul',    'Rua Pernambuco, 200',      'Savassi',      'Belo Horizonte'),
+('Estação Barreiro',     'Linha 2 - Verde',   'Av. Amazonas, 5500',       'Barreiro',     'Belo Horizonte'),
+('Estação Venda Nova',   'Linha 2 - Verde',   'Av. Vilarinho, 3000',      'Venda Nova',   'Belo Horizonte'),
+('Estação Eldorado',     'Linha 3 - Laranja', 'Av. Eldorado, 400',        'Eldorado',     'Contagem'),
+('Estação Industrial',   'Linha 3 - Laranja', 'Rua das Indústrias, 800',  'Industrial',   'Contagem'),
+('Estação Pampulha',     'Linha 1 - Azul',    'Av. Antônio Carlos, 7000', 'Pampulha',     'Belo Horizonte');
+</sql><sql name="SQL 3">CREATE TABLE TabelaFuncionario (
+    idFuncionario INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT,
+    cargo TEXT,
+    turno TEXT,
+    salario REAL
+);
+
+INSERT INTO TabelaFuncionario (nome, cargo, turno, salario) VALUES
+('Carlos Silva',      'Bilheteiro',            'Manhã',  2200.00),
+('Ana Souza',         'Supervisora',           'Tarde',  3800.00),
+('Pedro Oliveira',    'Agente de Segurança',   'Noite',  2600.00),
+('Mariana Costa',     'Técnica de Manutenção', 'Manhã',  3200.00),
+('João Ferreira',     'Operador de Trem',      'Tarde',  4100.00),
+('Fernanda Lima',     'Bilheteira',            'Noite',  2200.00),
+('Roberto Mendes',    'Gerente de Estação',    'Manhã',  5500.00);</sql><sql name="SQL 4">CREATE TABLE TabelaHorario (
+    idHorario INTEGER PRIMARY KEY AUTOINCREMENT,
+    diaSemana TEXT,
+    horaAbertura TEXT,
+    horaFechamento TEXT,
+    intervaloMinutos INTEGER
+);
+
+INSERT INTO TabelaHorario (diaSemana, horaAbertura, horaFechamento, intervaloMinutos) VALUES
+('Segunda-feira',  '05:00', '23:00', 4),
+('Terça-feira',    '05:00', '23:00', 4),
+('Quarta-feira',   '05:00', '23:00', 4),
+('Quinta-feira',   '05:00', '23:00', 4),
+('Sexta-feira',    '05:00', '00:00', 3),
+('Sábado',         '06:00', '23:00', 6),
+('Domingo',        '07:00', '22:00', 8);</sql><sql name="SQL 5">CREATE TABLE TabelaLinha (
+    idLinha INTEGER PRIMARY KEY AUTOINCREMENT,
+    nomeLinha TEXT,
+    cor TEXT,
+    extensaoKm REAL,
+    quantidadeEstacoes INTEGER
+);
+
+INSERT INTO TabelaLinha (nomeLinha, cor, extensaoKm, quantidadeEstacoes) VALUES
+('Linha 1', 'Azul',     28.5, 19),
+('Linha 2', 'Verde',    22.0, 15),
+('Linha 3', 'Laranja',  35.8, 24),
+('Linha 4', 'Amarela',  18.2, 12),
+('Linha 5', 'Lilás',    11.9,  8),
+('Linha 6', 'Vermelha', 40.0, 30),
+('Linha 7', 'Rubi',     14.5, 10);</sql><sql name="SQL 6">CREATE TABLE TabelaManutencao (
+    idManutencao INTEGER PRIMARY KEY AUTOINCREMENT,
+    descricao TEXT,
+    dataInicio TEXT,
+    dataFim TEXT,
+    status TEXT
+);
+INSERT INTO TabelaManutencao (descricao, dataInicio, dataFim, status) VALUES
+('Substituição de trilhos - Trecho Norte',     '2024-01-10', '2024-01-15', 'Concluída'),
+('Revisão geral das escadas rolantes',          '2024-02-05', '2024-02-07', 'Concluída'),
+('Manutenção preventiva dos trens da Linha 2',  '2024-03-20', '2024-03-22', 'Concluída'),
+('Reparo no sistema de sinalização - Linha 3',  '2024-04-01', '2024-04-10', 'Em andamento'),
+('Pintura e conservação das plataformas',       '2024-05-12', '2024-05-20', 'Agendada'),
+('Atualização do sistema de bilhetagem',        '2024-06-01', '2024-06-03', 'Agendada'),
+('Troca de equipamentos de ar-condicionado',    '2024-07-08', '2024-07-12', 'Agendada');
+</sql><sql name="SQL 7">CREATE TABLE TabelaOcorrencia (
+    idOcorrencia INTEGER PRIMARY KEY AUTOINCREMENT,
+    tipo TEXT,
+    descricao TEXT,
+    data TEXT,
+    gravidade TEXT
+);
+
+INSERT INTO TabelaOcorrencia (tipo, descricao, data, gravidade) VALUES
+('Atraso',        'Falha mecânica no trem causou atraso de 20 minutos na Linha 1', '2024-01-22', 'Moderada'),
+('Incidente',     'Passageiro passou mal na plataforma da Estação Central',         '2024-02-14', 'Baixa'),
+('Pane elétrica', 'Interrupção no fornecimento de energia na Linha 3',             '2024-03-05', 'Alta'),
+('Vandalismo',    'Depredação de assentos no vagão 04 do trem T-12',              '2024-03-18', 'Baixa'),
+('Evacuação',     'Fumaça detectada na Estação Barreiro, evacuação preventiva',    '2024-04-02', 'Alta'),
+('Atraso',        'Manifestação nas vias causou interrupção na Linha 2',           '2024-05-10', 'Moderada'),
+('Acidente',      'Colisão leve entre trens durante manobra no pátio',             '2024-06-25', 'Alta');
+</sql><sql name="SQL 8">CREATE TABLE TabelaTarifa (
+    idTarifa INTEGER PRIMARY KEY AUTOINCREMENT,
+    valor REAL,
+    tipo TEXT,
+    dataVigencia TEXT
+);
+
+INSERT INTO TabelaTarifa (valor, tipo, dataVigencia) VALUES
+(4.50, 'Comum',     '2024-01-01'),
+(2.25, 'Estudante', '2024-01-01'),
+(0.00, 'Idoso',     '2024-01-01'),
+(4.50, 'VT',        '2024-01-01'),
+(4.00, 'Pré-pago',  '2024-01-01'),
+(5.00, 'Comum',     '2025-01-01'),
+(2.50, 'Estudante', '2025-01-01');</sql><current_tab id="7"/></tab_sql></sqlb_project>
